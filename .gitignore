@@ -18,3 +18,5 @@
 .ruby-gemset
 
 .idea/
+
+config/config.yml

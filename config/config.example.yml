@@ -1,0 +1,20 @@
+# Copy this file to config.yml and fill in the missing keys below
+
+production:
+  beats:
+    api_key: # Production Beats Music application key
+    secret: # Production Beats Music application secret
+  lastfm:
+    api_key: # Production Last.fm application key
+    secret: # Production Last.fm application secret
+
+development: &development
+  beats:
+    api_key: # Development Beats Music application key
+    secret: # Development Beats Music application secret
+  lastfm:
+    api_key: # Development Last.fm application key
+    secret: # Development Last.fm application secret
+
+test:
+  <<: *development
