@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
          omniauth_providers: [:beats]
 
 
+  ####################
+  # Instance Methods #
+  ####################
+
   #################
   # Class Methods #
   #################
