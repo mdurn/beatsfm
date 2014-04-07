@@ -12,4 +12,6 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require animator
+#= require soundmanager
 #= require_tree .

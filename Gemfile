@@ -20,6 +20,8 @@ gem 'omniauth'
 gem 'omniauth-beats'
 gem 'omniauth-lastfm'
 gem 'slim'
+gem 'soundmanager-rails'
+gem 'httparty'
 
 group :development, :test do
   gem 'rspec-rails'

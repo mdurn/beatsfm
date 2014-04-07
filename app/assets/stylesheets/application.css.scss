@@ -9,5 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require 360player
+ *= require 360player-visualization
  *= require_tree .
  */
