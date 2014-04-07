@@ -69,5 +69,5 @@ BeatsFm::Application.configure do
   config.eager_load = true
 
   # Custom configurations
-    config.action_mailer.default_url_options = { host: 'beatsfm.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'beatsfm.herokuapp.com' }
 end

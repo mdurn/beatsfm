@@ -23,6 +23,8 @@ gem 'slim'
 gem 'soundmanager-rails'
 gem 'httparty'
 
+gem 'rails_12factor', group: :production
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry-rails' # Better Ruby interpreter
