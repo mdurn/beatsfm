@@ -1,0 +1,13 @@
+production: &default
+  beats:
+    api_key: <%= ENV['BEATS_API_KEY'] %>
+    secret: <%= ENV['BEATS_SECRET'] %>
+  lastfm:
+    api_key: <%= ENV['LASTFM_API_KEY'] %>
+    secret: <%= ENV['LASTFM_SECRET'] %>
+
+development: &development
+  <<: *default
+
+test:
+  <<: *default
