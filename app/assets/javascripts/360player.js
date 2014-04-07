@@ -397,7 +397,7 @@ function ThreeSixtyPlayer() {
     }
 
     var o = self.getTheDamnLink(e),
-        canvasElements, sURL, soundURL, thisSound, oContainer, has_vis, diameter;
+        canvasElements, sURL, soundURL, thisSound, oContainer, has_vis, diameter, duration;
 
     if (o.nodeName.toLowerCase() !== 'a') {
       o = self.isChildOfNode(o,'a');
@@ -421,6 +421,8 @@ function ThreeSixtyPlayer() {
     sm._writeDebug('handleClick()');
     soundURL = (o.href);
     thisSound = self.getSoundByURL(soundURL);
+
+    duration = o.getAttribute('data-duration');
 
     if (thisSound) {
 
@@ -449,6 +451,7 @@ function ThreeSixtyPlayer() {
        id:'ui360Sound'+(self.soundCount++),
        serverURL:serverUrl,
        url:soundURL,
+       duration:duration,
        onplay:self.events.play,
        onstop:self.events.stop,
        onpause:self.events.pause,
@@ -833,7 +836,7 @@ function ThreeSixtyPlayer() {
     }
 
     if (this.durationEstimate) {
-      this._360data.lastValues.durationEstimate = this.durationEstimate;
+      this._360data.lastValues.durationEstimate = 256000;
     }
 
     // background ring
@@ -1389,7 +1392,7 @@ soundManager.setup({
   consoleOnly: true,
   flashVersion: 9,
   useHighPerformance: true,
-  preferFlash: true,
+//  preferFlash: true,
   useFlashBlock: true
 });
 
