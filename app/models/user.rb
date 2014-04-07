@@ -10,8 +10,10 @@ class User < ActiveRecord::Base
   # Instance Methods #
   ####################
 
-  def set_lastfm_token!(session_token)
-    update_attribute(:lastfm_session_token, session_token)
+  def set_lastfm_credentials!(username, session_token)
+    self.lastfm_username = username
+    self.lastfm_session_token = session_token
+    save
   end
 
   #################

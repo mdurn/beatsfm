@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140407080913) do
+ActiveRecord::Schema.define(version: 20140407100135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20140407080913) do
     t.boolean  "beats_expires"
     t.integer  "beats_expires_at"
     t.string   "lastfm_session_token"
+    t.string   "lastfm_username"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

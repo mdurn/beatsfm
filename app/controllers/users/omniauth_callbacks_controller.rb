@@ -16,8 +16,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     redirect_to root_path unless @user.present?
 
     token = request.env["omniauth.auth"]['credentials']['token']
-    @user.set_lastfm_token!(token)
-    
+    username = request.env["omniauth.auth"]['credentials']['name']
+    @user.set_lastfm_credentials!(username, token)
+
     redirect_to after_sign_in_path_for(@user)
   rescue
     redirect_to root_path
