@@ -230,6 +230,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   config.omniauth :beats, APP_CONFIG['beats']['api_key'], APP_CONFIG['beats']['secret']
+  config.omniauth :lastfm, APP_CONFIG['lastfm']['api_key'], APP_CONFIG['lastfm']['secret']
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

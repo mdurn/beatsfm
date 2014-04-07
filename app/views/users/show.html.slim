@@ -2,5 +2,20 @@
 
 div.sm2-inline-list
   div.ui360.ui360-vis
-    /= link_to 'Test', 'http://freshly-ground.com/data/audio/sm2/The%20Fugitives%20-%20Graffiti%20Sex.mp3'
-    = link_to 'Test2', 'mp3:/mp3/mn_mp3_13_02/downloads/a075/045/848/45848839_2_015?48d882e51ff49ca3806e4b63d90b926556349db16cecf61947afe79945fabae2f0d4', data: {duration: 256000}
+    = link_to '', '#', id: 'now-playing', data: {duration: 0}
+div
+  = link_to 'Next Track', '#', id: 'next-track'
+
+javascript:
+  $(document).ready(function(){
+    setTimeout(function(){
+      var nextTrackLoader;
+      var lastFmRecommender = new window.LastFmRecommender(function(){
+        nextTrackLoader = new window.NextTrackLoader($('#now-playing'), threeSixtyPlayer, lastFmRecommender);
+        nextTrackLoader.loadTrackFromArtist(false);
+      });
+      $('#next-track').on('click', function() {
+        nextTrackLoader.loadTrackFromArtist(true);
+      });
+    }, 500);
+  });

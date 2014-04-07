@@ -12,4 +12,11 @@ BeatsFm::Application.routes.draw do
   end
 
   get 'hitplay', to: 'users#show', as: :hitplay
+
+  resource :api, only: [] do
+    member do
+      get :beats_artist_track, format: :json
+      get :lastfm_recommend_artists, format: :json
+    end
+  end
 end

@@ -389,6 +389,11 @@ function ThreeSixtyPlayer() {
     return e.target;
   };
 
+  this.forceClick = function() {
+    var button = document.getElementsByClassName('sm2-360btn')[0];
+    button.click();
+  };
+
   this.handleClick = function(e) {
     // a sound link was clicked
     if (e.button > 1) {

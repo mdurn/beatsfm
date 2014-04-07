@@ -3,12 +3,16 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :rememberable, :trackable, :omniauthable,
-         omniauth_providers: [:beats]
+         omniauth_providers: [:beats, :lastfm]
 
 
   ####################
   # Instance Methods #
   ####################
+
+  def set_lastfm_token!(session_token)
+    update_attribute(:lastfm_session_token, session_token)
+  end
 
   #################
   # Class Methods #
