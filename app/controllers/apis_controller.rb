@@ -49,8 +49,8 @@ class ApisController < ApplicationController
         format: 'json'
     })
 
-    recommended_artists = recommended_resp['lfm']['recommendations']['artist'].map {|artist| artist['name']}
-    top_artists = top_resp['topartists']['artist'].map {|artist| artist['name']}
+    recommended_artists = recommended_resp['lfm']['recommendations']['artist'].map {|artist| {name: artist['name'], image: artist['image'].last['__content__']}}
+    top_artists = top_resp['topartists']['artist'].map {|artist| {name: artist['name'], image: artist['image'].last['#text']}}
 
     artists = (recommended_artists + top_artists).shuffle
 

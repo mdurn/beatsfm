@@ -63,7 +63,7 @@ function ThreeSixtyPlayer() {
     allowMultiple: false,  // let many sounds play at once (false = only one sound playing at a time)
     loadRingColor: 'rgba(0,0,0,0.66)', // how much has loaded
     playRingColor: '#F60303', // how much has played
-    backgroundRingColor: 'rgba(0,0,0,0.33)', // color shown underneath load + play ("not yet loaded" color)
+    backgroundRingColor: 'rgba(0,0,0,0.66)', // color shown underneath load + play ("not yet loaded" color)
 
     // optional segment/annotation (metadata) stuff..
 //    segmentRingColor: 'rgba(255,255,255,0.33)', // metadata/annotation (segment) colors

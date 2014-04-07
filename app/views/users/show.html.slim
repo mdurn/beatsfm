@@ -11,7 +11,7 @@ javascript:
     setTimeout(function(){
       var nextTrackLoader;
       var lastFmRecommender = new window.LastFmRecommender(function(){
-        nextTrackLoader = new window.NextTrackLoader($('#now-playing'), threeSixtyPlayer, lastFmRecommender);
+        nextTrackLoader = new window.NextTrackLoader($('#now-playing'), $('.sm2-cover'), threeSixtyPlayer, lastFmRecommender);
         nextTrackLoader.loadTrackFromArtist(false);
       });
       $('#next-track').on('click', function() {

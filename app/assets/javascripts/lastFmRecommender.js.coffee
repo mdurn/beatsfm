@@ -1,5 +1,5 @@
 class @LastFmRecommender
-  recommendations: ['The Pharcyde', 'Mac DeMarco', 'Tame Impala', 'Purity Ring', 'The Sword'] # replaced after load
+  recommendations: [{name: 'The Pharcyde'}, {name: 'Tame Impala'}, {name: 'The Sword'}] # replaced after load
   index: 0
 
   constructor: (callback) ->
