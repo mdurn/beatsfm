@@ -37,7 +37,8 @@ function ThreeSixtyPlayer() {
       isTouchDevice = (uA.match(/ipad|iphone/i)),
       hasRealCanvas = (typeof window.G_vmlCanvasManager === 'undefined' && typeof document.createElement('canvas').getContext('2d') !== 'undefined'),
       // I dunno what Opera doesn't like about this. I'm probably doing it wrong.
-      fullCircle = (isOpera||isChrome?359.9:360);
+      fullCircle = (isOpera||isChrome?359.9:360),
+      serverUrl = "rtmp://edgecast-fmstream.mndigital.com";
 
   // CSS class for ignoring MP3 links
   this.excludeClass = 'threesixty-exclude';
@@ -73,7 +74,7 @@ function ThreeSixtyPlayer() {
     circleDiameter: 256, // set dynamically according to values from CSS
     circleRadius: 128,
     animDuration: 500,
-    animTransition: window.Animator.tx.bouncy, // http://www.berniecode.com/writing/animator.html
+    animTransition: Animator.tx.bouncy, // http://www.berniecode.com/writing/animator.html
     showHMSTime: true, // hours:minutes:seconds vs. seconds-only
     scaleFont: true,  // also set the font size (if possible) while animating the circle
 
@@ -389,7 +390,6 @@ function ThreeSixtyPlayer() {
   };
 
   this.handleClick = function(e) {
-
     // a sound link was clicked
     if (e.button > 1) {
       // only catch left-clicks
@@ -413,7 +413,8 @@ function ThreeSixtyPlayer() {
 
     sURL = o.getAttribute('href');
 
-    if (!o.href || !sm.canPlayLink(o) || self.hasClass(o,self.excludeClass)) {
+//    if (!o.href || !sm.canPlayLink(o) || self.hasClass(o,self.excludeClass)) {
+    if (!o.href || self.hasClass(o,self.excludeClass)) {
       return true; // pass-thru for non-MP3/non-links
     }
 
@@ -446,6 +447,7 @@ function ThreeSixtyPlayer() {
       // create sound
       thisSound = sm.createSound({
        id:'ui360Sound'+(self.soundCount++),
+       serverURL:serverUrl,
        url:soundURL,
        onplay:self.events.play,
        onstop:self.events.stop,
@@ -1056,7 +1058,8 @@ function ThreeSixtyPlayer() {
     self.oUITemplateVis.innerHTML = self.getUIHTML(uiDataVis.circleDiameter).join('');
 
     for (i=0,j=oLinks.length; i<j; i++) {
-      if (sm.canPlayLink(oLinks[i]) && !self.hasClass(oLinks[i],self.excludeClass) && !self.hasClass(oLinks[i],self.css.sDefault)) {
+//      if (sm.canPlayLink(oLinks[i]) && !self.hasClass(oLinks[i],self.excludeClass) && !self.hasClass(oLinks[i],self.css.sDefault)) {
+      if (!self.hasClass(oLinks[i],self.excludeClass) && !self.hasClass(oLinks[i],self.css.sDefault)) {
         self.addClass(oLinks[i],self.css.sDefault); // add default CSS decoration
         self.links[foundItems] = (oLinks[i]);
         self.indexByURL[oLinks[i].href] = foundItems; // hack for indexing
@@ -1386,6 +1389,7 @@ soundManager.setup({
   consoleOnly: true,
   flashVersion: 9,
   useHighPerformance: true,
+  preferFlash: true,
   useFlashBlock: true
 });
 
