@@ -390,8 +390,14 @@ function ThreeSixtyPlayer() {
   };
 
   this.forceClick = function() {
-    var button = document.getElementsByClassName('sm2-360btn')[0];
-    button.click();
+    var $fadeElements = $('canvas');
+    $fadeElements.fadeOut('slow', function(){
+      var button = document.getElementsByClassName('sm2-360btn')[0];
+      button.click();
+      setTimeout(function(){
+        $fadeElements.fadeIn('slow');
+      }, 400);
+    });
   };
 
   this.handleClick = function(e) {
