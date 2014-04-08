@@ -38,7 +38,8 @@ function ThreeSixtyPlayer() {
       hasRealCanvas = (typeof window.G_vmlCanvasManager === 'undefined' && typeof document.createElement('canvas').getContext('2d') !== 'undefined'),
       // I dunno what Opera doesn't like about this. I'm probably doing it wrong.
       fullCircle = (isOpera||isChrome?359.9:360),
-      serverUrl = "rtmp://edgecast-fmstream.mndigital.com";
+      serverUrl = "rtmp://edgecast-fmstream.mndigital.com", // rtmp server
+      trackScrobbled = false; // last.fm scrobbling
 
   // CSS class for ignoring MP3 links
   this.excludeClass = 'threesixty-exclude';
@@ -407,6 +408,8 @@ function ThreeSixtyPlayer() {
       // only catch left-clicks
       return true;
     }
+
+    trackScrobbled = false;
 
     var o = self.getTheDamnLink(e),
         canvasElements, sURL, soundURL, thisSound, oContainer, has_vis, diameter, duration;
@@ -849,6 +852,12 @@ function ThreeSixtyPlayer() {
 
     if (this.durationEstimate) {
       this._360data.lastValues.durationEstimate = this.durationEstimate;
+    }
+
+    var isPastHalfway = this._360data.lastValues.position > (this._360data.lastValues.durationEstimate/2);
+    if (!trackScrobbled && isPastHalfway) {
+      trackScrobbled = true;
+      $('#scrobbler').trigger('scrobble');
     }
 
     // background ring

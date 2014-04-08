@@ -37,7 +37,7 @@ class ApisController < ApplicationController
     api_sig_str = "api_key#{api_key}method#{lastfm_method}sk#{sk}#{api_secret}"
     api_sig = Digest::MD5.hexdigest(api_sig_str.force_encoding(Encoding::UTF_8))
 
-    recommended_resp = HTTParty.post("http://ws.audioscrobbler.com/2.0/?method=user.getRecommendedArtists", body: {
+    recommended_resp = HTTParty.post("http://ws.audioscrobbler.com/2.0/?method=#{lastfm_method}", body: {
         api_key: api_key,
         sk: sk,
         api_sig: api_sig
@@ -55,5 +55,33 @@ class ApisController < ApplicationController
     artists = (recommended_artists + top_artists).shuffle
 
     render json: { artists: artists }
+  end
+
+  def lastfm_scrobble
+    api_key = APP_CONFIG[:lastfm][:api_key]
+    artist = params['artist_name']
+    chosen_by_user = 0
+    lastfm_method = 'track.scrobble'
+    sk = current_user.lastfm_session_token
+    timestamp = Time.now.utc.to_i
+    track = params['track_name']
+    api_secret = APP_CONFIG[:lastfm][:secret]
+
+    api_sig_str = "api_key#{api_key}artist#{artist}chosenByUser#{chosen_by_user}method#{lastfm_method}" +
+        "sk#{sk}timestamp#{timestamp}track#{track}#{api_secret}"
+    api_sig = Digest::MD5.hexdigest(api_sig_str.force_encoding(Encoding::UTF_8))
+
+    resp = HTTParty.post("http://ws.audioscrobbler.com/2.0/", body: {
+        api_key: api_key,
+        artist: artist,
+        chosenByUser: chosen_by_user,
+        method: lastfm_method,
+        sk: sk,
+        timestamp: timestamp,
+        track: track,
+        api_sig: api_sig
+    })
+
+    head :ok
   end
 end

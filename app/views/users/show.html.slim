@@ -13,25 +13,37 @@
           = link_to '#', id: 'next-track-btn' do
             = image_tag 'next-track-btn.png', class: 'next-track-btn'
           .next-track-btn-blocker
+      #scrobbler
 
 javascript:
   $(document).ready(function(){
     setTimeout(function(){
-      var nextTrackLoader;
+      var nextTrackLoader,
+          $artistNameEl = $('#artist-name'),
+          $trackNameEl = $('#track-name');
+
       var $nextTrackBlockerEl = $('.next-track-btn-blocker');
       var nextTrackCallback = function(){
         $nextTrackBlockerEl.hide();
       };
       var lastFmRecommender = new window.LastFmRecommender(function(){
         nextTrackLoader = new window.NextTrackLoader(
-          $('#now-playing'), $('#artist-name'), $('#track-name'), threeSixtyPlayer, lastFmRecommender
+          $('#now-playing'), $artistNameEl, $trackNameEl, threeSixtyPlayer, lastFmRecommender
         );
         nextTrackLoader.loadTrackFromArtist(false, nextTrackCallback);
       });
+      var lastFmScrobbler = new window.LastFmScrobbler();
+
+      // events
+
       $('#next-track-btn').on('click', function() {
         $nextTrackBlockerEl.show();
         nextTrackLoader.loadTrackFromArtist(true, nextTrackCallback);
       });
+
+      $('#scrobbler').on('scrobble', function() {
+        lastFmScrobbler.scrobble($artistNameEl.text(), $trackNameEl.text());
+      })
 
     }, 500);
   });

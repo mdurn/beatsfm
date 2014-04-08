@@ -17,6 +17,7 @@ BeatsFm::Application.routes.draw do
     member do
       get :beats_artist_track, format: :json
       get :lastfm_recommend_artists, format: :json
+      get :lastfm_scrobble, format: :json
     end
   end
 end
