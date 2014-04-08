@@ -22,6 +22,7 @@ gem 'omniauth-lastfm'
 gem 'slim'
 gem 'soundmanager-rails'
 gem 'httparty'
+gem 'bootstrap-sass'
 
 gem 'rails_12factor', group: :production
 

@@ -1,0 +1,56 @@
+.player-container {
+  width: 320px;
+  height: 476px;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-color: #4e4e4e;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 10px;
+}
+
+.player-content {
+  width: 300px;
+  margin: auto;
+}
+
+.track-info {
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  height: 23px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.player-buttons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.next-track-btn-wrap {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  margin: auto;
+
+  #next-track-btn {
+    width: 100px;
+    height: 100px;
+    .next-track-btn {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .next-track-btn-blocker {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(0,0,0,0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index:1;
+  }
+}

@@ -4,8 +4,8 @@
 .ui360-vis .sm2-360ui,
 .sm2-inline-list .ui360-vis {
  /* size of the container for the circle, etc. */
- width:256px;
- height:256px;
+ width:300px;
+ height:300px;
 }
 
 .ui360-vis {
@@ -31,19 +31,19 @@
 }
 
 .sm2-inline-list .ui360-vis a {
- line-height:256px;
+ line-height:300px;
  top:auto;
 }
 
 .ui360-vis .sm2-360ui {
- margin-left:-256px;
+ margin-left:-300px;
 }
 
 .ui360-vis .sm2-timing {
  font:bold 24px "helvetica neue",helvetica,monaco,lucida,terminal,monospace;
  color:#333;
  text-align:center;
- line-height:256px;
+ line-height:300px;
  text-indent:0px;
 }
 
@@ -53,16 +53,17 @@
 }
 
 .sm2-inline-list .ui360-vis {
- margin:8px 13px 7px 0px;
+ margin:0;
+ margin-bottom:-2px;
  padding-left:0px;
  background-position:50% 50%; /* initial play button position */
 }
 
 .sm2-inline-list .ui360-vis .sm2-360ui {
- border:1px solid #eee;
+// border:1px solid #eee;
  /* offset the border */
- margin-left:-1px;
- margin-top:-1px;
+// margin-left:-1px;
+// margin-top:-1px;
 }
 
 .sm2-inline-list .ui360-vis a {
@@ -73,7 +74,7 @@
  top:1px;
  width:100%; /* 2px padding in box */
  height:99%; /* dumb vertical hack */
- *height:256px; /* IE is dumb. */
+ *height:300px; /* IE is dumb. */
  overflow:hidden;
  font-size:small;
  font-weight:300;

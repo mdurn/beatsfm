@@ -5,7 +5,6 @@ class @LastFmRecommender
   constructor: (callback) ->
     $.get '/api/lastfm_recommend_artists',
       (data) =>
-        console.log data
         @recommendations = data['artists']
         callback()
 

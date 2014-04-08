@@ -1,21 +1,37 @@
-= link_to "Sign Out", destroy_user_session_path
-
-div.sm2-inline-list
-  div.ui360.ui360-vis
-    = link_to '', '#', id: 'now-playing', data: {duration: 0}
-div
-  = link_to 'Next Track', '#', id: 'next-track'
+.row
+  div.player-container
+    div.player-content
+      div.sm2-inline-list
+        div.ui360.ui360-vis
+          = link_to '', '#', id: 'now-playing', data: {duration: 0}
+      .track-info.clear
+        span#artist-name
+        |&nbsp;-&nbsp;
+        span#track-name
+      .player-buttons
+        .next-track-btn-wrap
+          = link_to '#', id: 'next-track-btn' do
+            = image_tag 'next-track-btn.png', class: 'next-track-btn'
+          .next-track-btn-blocker
 
 javascript:
   $(document).ready(function(){
     setTimeout(function(){
       var nextTrackLoader;
+      var $nextTrackBlockerEl = $('.next-track-btn-blocker');
+      var nextTrackCallback = function(){
+        $nextTrackBlockerEl.hide();
+      };
       var lastFmRecommender = new window.LastFmRecommender(function(){
-        nextTrackLoader = new window.NextTrackLoader($('#now-playing'), $('.sm2-cover'), threeSixtyPlayer, lastFmRecommender);
-        nextTrackLoader.loadTrackFromArtist(false);
+        nextTrackLoader = new window.NextTrackLoader(
+          $('#now-playing'), $('#artist-name'), $('#track-name'), threeSixtyPlayer, lastFmRecommender
+        );
+        nextTrackLoader.loadTrackFromArtist(false, nextTrackCallback);
       });
-      $('#next-track').on('click', function() {
-        nextTrackLoader.loadTrackFromArtist(true);
+      $('#next-track-btn').on('click', function() {
+        $nextTrackBlockerEl.show();
+        nextTrackLoader.loadTrackFromArtist(true, nextTrackCallback);
       });
+
     }, 500);
   });

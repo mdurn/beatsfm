@@ -1,1 +1,10 @@
-= link_to "Sign in with Beats Music", user_omniauth_authorize_path(:beats)
+.row
+  .col-xs-2
+  .col-xs-8
+    .jumbotron.bg-black.text-center.c-white
+      h1 BeatsFM
+      p.lead
+        |A Beats Music player powered by your Last.fm history.
+        br Sign in with your Beats and Last.fm accounts to start listening!
+      a.btn.btn-lg.btn-danger href=user_omniauth_authorize_path(:beats) Get Started
+  .col-xs-2

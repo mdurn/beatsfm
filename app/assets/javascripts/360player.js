@@ -347,6 +347,7 @@ function ThreeSixtyPlayer() {
         if (nextLink<pl.links.length) {
           pl.handleClick({'target':pl.links[nextLink]});
         }
+        $('#next-track-btn').click();
       }
     },
 
@@ -847,7 +848,7 @@ function ThreeSixtyPlayer() {
     }
 
     if (this.durationEstimate) {
-      this._360data.lastValues.durationEstimate = 256000;
+      this._360data.lastValues.durationEstimate = this.durationEstimate;
     }
 
     // background ring

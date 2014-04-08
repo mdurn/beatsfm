@@ -1,0 +1,10 @@
+.btn-group.pull-right
+  - if current_user
+    button.navbar-btn.btn-danger.btn.dropdown-toggle data-toggle='dropdown'
+      = current_user.username
+      span.caret
+    ul.dropdown-menu
+      li
+        a href=destroy_user_session_path Sign Out
+  - else
+    a.navbar-btn.btn-danger.btn href=user_omniauth_authorize_path(:beats) Sign In
