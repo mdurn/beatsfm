@@ -5,8 +5,8 @@
       span.caret
     ul.dropdown-menu
       li
-        a href=destroy_user_session_path Sign Out
-      li
         a href=user_omniauth_authorize_path(:lastfm) Switch Last.fm Account
+      li
+        a href=destroy_user_session_path Sign Out
   - else
     a.navbar-btn.btn-danger.btn href=user_omniauth_authorize_path(:beats) Sign In

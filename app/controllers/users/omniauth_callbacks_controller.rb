@@ -14,8 +14,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def lastfm
     @user = current_user
 
-    if @user.present?
-      flash[:notice] = 'Sign in to continue'
+    if @user.blank?
+      flash[:alert] = 'Not Logged in. Sign in to continue.'
       redirect_to root_path
     else
       token = request.env["omniauth.auth"]['credentials']['token']
@@ -24,7 +24,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to after_sign_in_path_for(@user)
     end
   rescue
-    flash[:notice] = 'Unable to authenticate with Last.fm. Please try again'
+    flash[:alert] = 'Unable to authenticate with Last.fm. Please try again'
     redirect_to root_path
   end
 end

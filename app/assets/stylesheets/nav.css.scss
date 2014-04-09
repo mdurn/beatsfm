@@ -1,3 +1,12 @@
-.navbar-inverse {
-  background-color: #202020;
+.navbar {
+  .navbar-inverse {
+    background-color: #202020;
+  }
+
+  .alert {
+    position: relative;
+    top: 15px;
+    left: 15px;
+    color: #d9534f;
+  }
 }

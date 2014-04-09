@@ -13,6 +13,5 @@ html
         .container
           = render partial: 'layouts/nav_buttons'
           a.navbar-brand href=(current_user ? hitplay_path : root_path) BeatsFM
-    -#%p.notice= notice
-    -#%p.alert= alert
+          span.alert= alert
     = yield
