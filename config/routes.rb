@@ -1,8 +1,14 @@
 BeatsFm::Application.routes.draw do
   get "users/show"
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }, skip: [:sessions]
 
   root 'home#index'
+
+  as :user do
+    get 'signin' => 'sessions#new', :as => :new_user_session
+    post 'signin' => 'devise/sessions#create', :as => :user_session
+    get 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
 
   namespace :users do
     get 'omniauth_callbacks/beats'
