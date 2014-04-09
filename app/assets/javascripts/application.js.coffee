@@ -15,5 +15,8 @@
 #= require animator
 #= require soundmanager
 #= require bootstrap
+#= require lastFmRecommender
+#= require lastFmScrobbler
+#= require nextTrackLoader
 
 #= require_tree .
