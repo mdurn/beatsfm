@@ -1,8 +1,9 @@
 class ApisController < ApplicationController
   before_filter :authenticate_user!
 
-
   def beats_artist_track
+    return unless beats_extend_authorization
+
     artist_name = params['artist']
     user = current_user
     access_token = user.beats_token
@@ -27,6 +28,32 @@ class ApisController < ApplicationController
         track_name: playback_resp['data']['refs']['track']['display'],
         duration: track['duration'] * 1000
     }
+  end
+
+  def beats_extend_authorization
+    current_time_i = Time.now.utc.to_i
+    time_left = (current_user.beats_expires_at - current_time_i)
+    if time_left < 1800
+      begin
+        resp = HTTParty.post('https://partner.api.beatsmusic.com/v1/oauth2/token', body: {
+            client_secret: APP_CONFIG[:beats][:secret],
+            client_id: APP_CONFIG[:beats][:api_key],
+            refresh_token: current_user.beats_refresh_token,
+            grant_type: 'refresh_token' })
+
+        current_user.beats_token = resp['access_token']
+        current_user.beats_refresh_token = resp['refresh_token']
+        current_user.beats_expires_at = current_time_i + resp['expires_in']
+        current_user.save
+      rescue
+        sign_out(current_user)
+        flash[:notice] = 'Session timed out due to inactivity. Sign in again to keep listening.'
+        render json: { error: { message: 'session timed out due to inactivity', redirect_url: root_url }}, status: 440
+        return false
+      end
+    end
+
+    true
   end
 
   def lastfm_recommend_artists

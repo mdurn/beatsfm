@@ -30,8 +30,11 @@ class @NextTrackLoader
         $trackNameEl.text(data['track_name'])
         $coverEl.css('background-image', "url('#{artist['image']}')")
         player.forceClick() if autoPlay
-    .fail( =>
-      @loadTrackFromArtist(autoPlay)
+    .fail( (xhr)=>
+      if xhr.status == 440
+        window.location = ($.parseJSON(xhr.responseText))['error']['redirect_url']
+      else
+        @loadTrackFromArtist(autoPlay)
     ).done( =>
       callback()
     )
