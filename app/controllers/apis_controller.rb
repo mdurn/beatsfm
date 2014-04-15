@@ -15,9 +15,9 @@ class ApisController < ApplicationController
     artist = artist_resp['data'].first
     artist_id = artist['id']
     tracks_resp = HTTParty.get("https://partner.api.beatsmusic.com/v1/api/artists/#{artist_id}/tracks",
-      query: {order_by: 'popularity', limit: 5, client_id: client_id})
+      query: {order_by: 'popularity', limit: 50, client_id: client_id})
 
-    track = tracks_resp['data'].shuffle.first
+    track = tracks_resp['data'].sample
     track_id = track['id']
     playback_resp = HTTParty.get("https://partner.api.beatsmusic.com/v1/api/tracks/#{track_id}/audio",
       query: {access_token: access_token, acquire: 1})
@@ -60,18 +60,21 @@ class ApisController < ApplicationController
     api_key = APP_CONFIG[:lastfm][:api_key]
     api_secret = APP_CONFIG[:lastfm][:secret]
     sk = current_user.lastfm_session_token
+    limit = 100
     lastfm_method = 'user.getRecommendedArtists'
-    api_sig_str = "api_key#{api_key}method#{lastfm_method}sk#{sk}#{api_secret}"
+    api_sig_str = "api_key#{api_key}limit#{limit}method#{lastfm_method}sk#{sk}#{api_secret}"
     api_sig = Digest::MD5.hexdigest(api_sig_str.force_encoding(Encoding::UTF_8))
 
     recommended_resp = HTTParty.post("http://ws.audioscrobbler.com/2.0/?method=#{lastfm_method}", body: {
         api_key: api_key,
+        limit: limit,
         sk: sk,
         api_sig: api_sig
     })
 
     top_resp = HTTParty.get("http://ws.audioscrobbler.com/2.0/?method=user.getTopArtists", query: {
         api_key: api_key,
+        limit: limit,
         user: current_user.lastfm_username,
         format: 'json'
     })
