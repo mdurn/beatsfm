@@ -1,10 +1,10 @@
 # BeatsFM
 
-BeatsFM is a web player for Beats Music that plays top artists and recommendations from a user's Last.fm account. Tracks are scrobbled to Last.fm when 50% of the track is completed. A Beats Music subscription and Last.fm account are required to use the site.
+BeatsFM is an unofficial (3rd party) web player for Beats Music that plays top artists and recommendations from a user's Last.fm account. Tracks are scrobbled to Last.fm when 50% of the track is completed. A Beats Music subscription and Last.fm account are required to use the site.
 
 ###Website
 
-[http://beatsfm.herokuapp.com](http://beatsfm.herokuapp.com})
+[http://beats-fm.com](http://www.beats-fm.com)
 
 ###Additional Details
 
