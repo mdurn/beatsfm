@@ -16,6 +16,7 @@
 
 .ruby-version
 .ruby-gemset
+script/env.sh
 
 .idea/
 
