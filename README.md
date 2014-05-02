@@ -12,5 +12,5 @@ The player first fetches a mix of a Last.fm user's [top artists](http://www.last
 
 Tracks can be skipped, fast-forwarded, or rewound. After 50% of the track is played, it is scrobbled to Last.fm.
 
-![](http://api.mixpanel.com/track/?data=eyJldmVudCI6IlJlcG9zaXRvcnkgVmlld2VkIiwicHJvcGVydGllcyI6eyJ0b2tlbiI6Ijg2YWQ3Mjc5YmQzMGQ2MDMzMzQ0NjYwMDY3YzA1MTg1IiwiY2FtcGFpZ24iOiJiZWF0c2ZtIn0=&ip=1&img=1)
+![](http://api.mixpanel.com/track/?data=eyJldmVudCI6IlJlcG9zaXRvcnkgVmlld2VkIiwicHJvcGVydGllcyI6eyJ0b2tlbiI6Ijg2YWQ3Mjc5YmQzMGQ2MDMzMzQ0NjYwMDY3YzA1MTg1IiwiY2FtcGFpZ24iOiJiZWF0c2ZtIn19&ip=1&img=1)
 ![](http://www.pixelsite.info/track/t19137.gif)
